@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Case Converter</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(to bottom, #b0c4de, #778899); /* Linear Gradient Light Slate */
+            font-family: 'darkGreen', sans-serif; /* Set font-family to Slate Green */
+            color: darkgreen; /* Text Color as Slate Green */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: slategrey;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        img {
+            width: 100px;
+            padding: 20px 60px;
+
+        }
+        textarea {
+            width: 90%;
+            padding: 10px;
+        }
+        select{
+            padding: 10px;
+            margin: 10px 0;
+            background: darkgrey;
+        }
+        button {
+            padding: 10px;
+            margin: 10px 0;
+            background: darkgrey;
+            border-radius: 20px;
+         }   
+
+        #convertedText {
+            font-weight: bold;  
+            font-family: 'brown', sans-serif;
+            color: brown;   
+
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Slate+Green&display=swap" rel="stylesheet"> <!-- Import Slate Green font from Google Fonts -->
+</head>
+<body>
+    <img src="c://Users//Owner//Pictures//circle-logo.png" alt=" Case Converter Logo" class="logo"> <!-- Replace "your_logo.png" with the path to your logo image -->
+    <div class="container">
+        <h1>Text Case Converter</h1>
+        <p>Enter text to convert:</p>
+        <textarea id="inputText" rows="4" cols="50"></textarea>
+        <br>
+        <label>Choose a conversion type:</label>
+        <select id="conversionType">
+            <option value="uppercase">Uppercase</option>
+            <option value="lowercase">Lowercase</option>
+            <option value="titlecase">Title Case</option>
+        </select>
+        <br>
+        <button onclick="convertText()">Convert</button>
+        <p>Converted Text:</p>
+        <p id="convertedText"></p>
+    </div>
+
+    <script>
+        function convertText() {
+            var inputText = document.getElementById("inputText").value;
+            var conversionType = document.getElementById("conversionType").value;
+            var convertedText = "";
+
+            if (conversionType === "uppercase") {
+                convertedText = inputText.toUpperCase();
+            } else if (conversionType === "lowercase") {
+                convertedText = inputText.toLowerCase();
+            } else if (conversionType === "titlecase") {
+                var words = inputText.split(' ');
+                
+                for (var i = 0; i < words.length; i++) {
+                    if (words[i] !== "") {
+                        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+                    }
+                }
+                convertedText = words.join(' ');
+            }
+
+            document.getElementById("convertedText").textContent = convertedText;
+        }
+    </script>
+</body>
+</html>
